@@ -1,5 +1,5 @@
 
-@inline function _rho(E::Real,m::Real) 
+@inline function _rho(E<:Real,m<:Real) 
     return sqrt(E^2 - m^2)
 end
 
@@ -54,7 +54,7 @@ julia> differential_cross_section(E_in, cos_theta)
 #         E_in^2 * (ELECTRON_MASS^2 + MUON_MASS^2)
 #     )
 # end
-function differential_cross_section(E::Real, cth::Real)
+function differential_cross_section(E<:Real, cth<:Real)
     ALPHA^2/(16*E^6) * (sqrt(E^2-MUON_MASS^2)/sqrt(E^2 - ELECTRON_MASS^2))*(E^4 + (E^2 - ELECTRON_MASS^2)*(E^2 - MUON_MASS^2)*cth^2 + E^2*(ELECTRON_MASS^2 + MUON_MASS^2))
 end
 
@@ -92,7 +92,7 @@ julia> total_cross_section(E_in)
 
 ```
 """
-function total_cross_section(E_in)
+function total_cross_section(E_in<:Real)
     rho_e = _rho(E_in, ELECTRON_MASS)
     rho_mu = _rho(E_in, MUON_MASS)
 
